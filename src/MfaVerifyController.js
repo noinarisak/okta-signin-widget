@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-/* eslint complexity: [2, 21] max-statements: [2, 25] max-params: [2, 12]*/
+/* eslint complexity: [2, 21] max-statements: [2, 25] max-params: 0 */
 define([
   'okta',
   'util/BaseLoginController',
@@ -22,10 +22,12 @@ define([
   'views/mfa-verify/PushForm',
   'views/mfa-verify/PasswordForm',
   'views/mfa-verify/InlineTOTPForm',
+  'views/mfa-verify/SendEmailForm',
   'views/shared/FooterSignout'
-],
-function (Okta, BaseLoginController, TOTPForm, YubikeyForm, SecurityQuestionForm, PassCodeForm,
-  EmailMagicLinkForm, PushForm, PasswordForm, InlineTOTPForm, FooterSignout) {
+], function (Okta, BaseLoginController, TOTPForm, YubikeyForm,
+             SecurityQuestionForm, PassCodeForm, EmailMagicLinkForm,
+             PushForm, PasswordForm, InlineTOTPForm, SendEmailForm,
+             FooterSignout) {
 
   var { CheckBox } = Okta.internal.views.forms.inputs;
 
@@ -44,7 +46,7 @@ function (Okta, BaseLoginController, TOTPForm, YubikeyForm, SecurityQuestionForm
         if (this.options.appState.get('isIdxStateToken')){
           View = EmailMagicLinkForm;
         } else {
-          View = PassCodeForm;
+          View = SendEmailForm;
         }
         break;
       case 'sms':

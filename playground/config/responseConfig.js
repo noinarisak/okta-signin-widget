@@ -36,7 +36,7 @@ const emailEnrollMocks = {
     'enroll-email-with-sms-enrolled'
   ],
   '/api/v1/authn/skip': [
-    'success-001'
+    'enroll-email-with-sms-enrolled'
   ],
   '/api/v1/authn/factors': [
     'enroll-activate-email'
@@ -48,6 +48,21 @@ const emailEnrollMocks = {
     'success-001'
   ],
 };
+
+// email verification
+const emailVerificationMocks = {
+  '/api/v1/authn': [
+    'mfa-required-email'
+  ],
+  '/api/v1/authn/factors/:factorid/verify/resend': [
+    'mfa-challenge-email',
+  ],
+  '/api/v1/authn/factors/:factorid/verify': [
+    'mfa-challenge-email',
+    'success-001'
+  ],
+};
+
 
 // ===== IDX
 // Windows authenticator with loopback server
@@ -95,5 +110,6 @@ module.exports = {
   // TODO: some testcafe test rely on setting mocks to idx
   // which is apparently bad. ideally, testcafe test shall pass even
   // no mocks has been config.
-  mocks: idx,
+  //mocks: emailEnrollMocks,
+  mocks: emailVerificationMocks
 };

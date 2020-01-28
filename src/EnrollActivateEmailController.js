@@ -47,7 +47,6 @@ define([
       noButtonBar: false,
       autoSave: true,
       save: _.partial(Okta.loc, 'oform.verify', 'login'),
-      hasSavingState: true,
       formChildren: [
         // message
         FormType.View({
